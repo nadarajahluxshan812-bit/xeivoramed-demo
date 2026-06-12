@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XeivoraMed — Verified patient data infrastructure</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F7FB;
+    --paper-2:#FFFFFF;
+    --sand:#EFF1F7;
+    --ink:#171E33;
+    --slate:#535B73;
+    --faint:#8A91A8;
+    --line:#E1E4EF;
+    --line-2:#D2D7E6;
+    --blue:#1B3A8F;
+    --blue-soft:#ECF0FB;
+    --coral:#F2604E;
+    --coral-soft:#FCEDEA;
+    --green:#0E7C5A;
+    --green-soft:#E6F4EE;
+    --amber:#9A6B00;
+    --amber-soft:#F7EFDC;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.65;font-size:16px}
+  a{text-decoration:none;color:inherit}
+  .serif{font-family:'Fraunces',serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+  .narrow{max-width:760px}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(246,247,251,.86);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+  header.scrolled{border-color:var(--line)}
+  .nav{display:flex;align-items:center;gap:12px;height:70px}
+  .brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+  .brand .badge{width:34px;height:34px;border-radius:9px;background:var(--blue);display:flex;align-items:center;justify-content:center}
+  .brand .wm{font-size:18px;font-weight:600;letter-spacing:-0.3px}
+  .brand .wm span{color:var(--coral)}
+  .nav .links{display:flex;align-items:center;gap:28px}
+  .nav .links a{font-size:14px;font-weight:500;color:var(--slate);transition:color .2s}
+  .nav .links a:hover{color:var(--blue)}
+  .nav .cta{font-family:inherit;font-size:13.5px;font-weight:500;background:var(--ink);color:#fff;border:none;padding:10px 17px;border-radius:9px;cursor:pointer;transition:background .2s}
+  .nav .cta:hover{background:#0d1326}
+
+  /* hero — editorial */
+  .hero{padding:78px 0 30px}
+  .kicker{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--coral);margin-bottom:22px}
+  h1{font-family:'Fraunces',serif;font-weight:500;font-size:58px;line-height:1.06;letter-spacing:-1.4px;max-width:880px;margin-bottom:26px}
+  h1 em{font-style:italic;color:var(--blue)}
+  .lede{font-size:19px;color:var(--slate);max-width:660px;margin-bottom:20px}
+  .lede b{color:var(--ink);font-weight:600}
+  .hero-meta{display:flex;gap:28px;flex-wrap:wrap;margin-top:34px;padding-top:28px;border-top:1px solid var(--line)}
+  .hero-meta .m{font-size:14px;color:var(--slate)}
+  .hero-meta .m b{display:block;font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--ink);letter-spacing:-0.5px;margin-bottom:1px}
+
+  /* animated pulse signature line */
+  .pulse-line{width:100%;height:54px;margin:18px 0 0;display:block}
+  .pulse-line path{fill:none;stroke:var(--coral);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1400;stroke-dashoffset:1400;animation:drawline 3.5s ease-out forwards .4s}
+  @keyframes drawline{to{stroke-dashoffset:0}}
+
+  /* definition block */
+  .define{background:var(--blue);color:#fff;border-radius:20px;padding:44px 48px;margin:8px 0 0}
+  .define .dl{font-size:12.5px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;color:#A8C0EE;margin-bottom:14px}
+  .define p{font-family:'Fraunces',serif;font-size:27px;font-weight:400;line-height:1.4;letter-spacing:-0.4px}
+  .define p span{color:#FF9A8B;font-style:italic}
+
+  /* section system — editorial numbered */
+  .section{padding:74px 0;border-top:1px solid var(--line)}
+  .sec-grid{display:grid;grid-template-columns:96px 1fr;gap:8px}
+  .sec-num{font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:var(--coral);padding-top:6px}
+  .sec-main{min-width:0}
+  .sec-title{font-family:'Fraunces',serif;font-weight:500;font-size:34px;line-height:1.14;letter-spacing:-0.8px;margin-bottom:16px}
+  .sec-intro{font-size:17px;color:var(--slate);max-width:600px;margin-bottom:34px}
+
+  /* problem rows */
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .fact{background:var(--paper-2);padding:26px 24px}
+  .fact .fn{font-family:'Fraunces',serif;font-size:32px;font-weight:600;color:var(--blue);letter-spacing:-0.5px;line-height:1;margin-bottom:12px}
+  .fact h4{font-size:15.5px;font-weight:600;margin-bottom:6px}
+  .fact p{font-size:13.5px;color:var(--slate)}
+
+  /* how — steps as editorial list */
+  .steps{display:flex;flex-direction:column;gap:0}
+  .step{display:grid;grid-template-columns:54px 1fr;gap:20px;padding:24px 0;border-bottom:1px solid var(--line)}
+  .step:first-child{padding-top:0}
+  .step:last-child{border-bottom:none;padding-bottom:0}
+  .step .sc{width:44px;height:44px;border-radius:12px;background:var(--blue-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step .st-tag{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--coral);margin-bottom:4px}
+  .step h4{font-size:18px;font-weight:600;letter-spacing:-0.2px;margin-bottom:5px}
+  .step p{font-size:14.5px;color:var(--slate);max-width:560px}
+
+  /* provenance demo */
+  .prov{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--paper-2);margin-top:6px}
+  .prov-row{display:flex;align-items:center;gap:14px;padding:16px 22px}
+  .prov-row + .prov-row{border-top:1px solid var(--line)}
+  .prov-row .pic{width:36px;height:36px;border-radius:10px;background:var(--sand);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .prov-row .pm{flex:1}
+  .prov-row .pk{font-size:12px;color:var(--slate)}
+  .prov-row .pv{font-size:15.5px;font-weight:600;letter-spacing:-0.2px}
+  .ptag{font-size:11px;font-weight:500;padding:5px 11px;border-radius:20px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+  .ptag .d{width:5px;height:5px;border-radius:50%;background:currentColor}
+  .ptag.v{background:var(--green-soft);color:var(--green)}
+  .ptag.s{background:var(--amber-soft);color:var(--amber)}
+  .prov-note{font-size:13px;color:var(--faint);margin-top:14px}
+
+  /* who it's for */
+  .who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .who-card{border:1px solid var(--line);border-radius:16px;padding:26px;background:var(--paper-2);transition:border-color .25s,transform .25s}
+  .who-card:hover{border-color:var(--line-2);transform:translateY(-3px)}
+  .who-card .wi{width:42px;height:42px;border-radius:12px;background:var(--blue-soft);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .who-card h4{font-size:17px;font-weight:600;letter-spacing:-0.2px;margin-bottom:7px}
+  .who-card p{font-size:14px;color:var(--slate)}
+
+  /* rollout timeline */
+  .timeline{position:relative;padding-left:26px}
+  .timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .tl{position:relative;padding:0 0 26px 22px}
+  .tl:last-child{padding-bottom:0}
+  .tl::before{content:"";position:absolute;left:-25px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2.5px solid var(--coral)}
+  .tl .ph{font-size:12px;font-weight:600;letter-spacing:.5px;color:var(--coral);text-transform:uppercase;margin-bottom:3px}
+  .tl h4{font-size:16.5px;font-weight:600;letter-spacing:-0.2px;margin-bottom:3px}
+  .tl p{font-size:14px;color:var(--slate);max-width:580px}
+  .tl .when{font-size:12.5px;color:var(--faint);margin-top:3px}
+
+  /* FAQ */
+  .faq{border-top:1px solid var(--line)}
+  .qa{border-bottom:1px solid var(--line);padding:22px 0}
+  .qa summary{font-size:16.5px;font-weight:600;letter-spacing:-0.2px;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .qa summary::-webkit-details-marker{display:none}
+  .qa summary .ico{width:22px;height:22px;flex-shrink:0;border-radius:50%;border:1.5px solid var(--line-2);display:flex;align-items:center;justify-content:center;transition:transform .25s,background .25s,border-color .25s;font-size:16px;color:var(--slate)}
+  .qa[open] summary .ico{transform:rotate(45deg);background:var(--blue);border-color:var(--blue);color:#fff}
+  .qa p{font-size:14.5px;color:var(--slate);margin-top:12px;max-width:640px}
+
+  /* closing CTA */
+  .closing{padding:80px 0}
+  .closing-card{background:var(--ink);color:#fff;border-radius:22px;padding:54px 48px;text-align:center;position:relative;overflow:hidden}
+  .closing-card .cpulse{position:absolute;left:0;right:0;bottom:0;width:100%;height:60px;opacity:.4}
+  .closing-card .cpulse path{fill:none;stroke:var(--coral);stroke-width:2;stroke-linecap:round}
+  .closing-card h2{font-family:'Fraunces',serif;font-weight:500;font-size:36px;line-height:1.1;letter-spacing:-0.8px;margin-bottom:14px;position:relative}
+  .closing-card p{font-size:16px;color:#B4BBD2;max-width:520px;margin:0 auto 28px;position:relative}
+  .closing-card .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+  .bn{font-family:inherit;font-size:15px;font-weight:500;padding:14px 26px;border-radius:12px;cursor:pointer;border:none;transition:transform .15s,background .2s}
+  .bn-coral{background:var(--coral);color:#fff}
+  .bn-coral:hover{transform:translateY(-2px);background:#ee5240}
+  .bn-ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff}
+  .bn-ghost:hover{background:rgba(255,255,255,.14)}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:50px 0 32px}
+  .foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:36px}
+  .foot-brand{max-width:280px}
+  .foot-brand .brand{margin-bottom:13px}
+  .foot-brand p{font-size:13.5px;color:var(--slate)}
+  .foot-cols{display:flex;gap:54px;flex-wrap:wrap}
+  .foot-col h5{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+  .foot-col a{display:block;font-size:14px;color:var(--slate);margin-bottom:10px;transition:color .2s}
+  .foot-col a:hover{color:var(--blue)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+  .foot-bottom p{font-size:12.5px;color:var(--faint)}
+  .pilot-note{font-size:12px;color:var(--amber);background:var(--amber-soft);padding:6px 13px;border-radius:20px;font-weight:500}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:860px){
+    h1{font-size:42px}
+    .sec-grid{grid-template-columns:1fr;gap:0}
+    .sec-num{padding-top:0;margin-bottom:8px}
+    .facts,.who-grid{grid-template-columns:1fr}
+    .nav .links{display:none}
+    .define{padding:32px}
+    .define p{font-size:22px}
+    .closing-card{padding:40px 28px}
+  }
+  @media(max-width:520px){.wrap{padding:0 22px}h1{font-size:35px}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1!important;transform:none!important}.pulse-line path{stroke-dashoffset:0!important}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a class="brand" href="#"><span class="badge"><svg width="20" height="20" viewBox="0 0 40 40"><g transform="translate(20,20)"><path fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" d="M-11-11 L-4-3.5"/><path fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" d="M11-11 L4-3.5"/><path fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" d="M-11 11 L-4 3.5"/><path fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" d="M11 11 L4 3.5"/><path fill="none" stroke="#F2604E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" d="M-14 0 L-5 0 L-2.5-5.5 L2 5.5 L4.5 0 L14 0"/></g></svg></span><span class="wm">Xeivora<span>Med</span></span></a>
+    <div class="links">
+      <a href="#problem">The problem</a>
+      <a href="#how">How it works</a>
+      <a href="#data">Verified data</a>
+      <a href="#rollout">Rollout</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="cta" href="/clinic" target="_top" style="display:inline-flex;align-items:center">View the demo</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">Verified patient-data infrastructure · Pilot stage</div>
+    <h1>Verified patient data,<br><em>ready the moment</em> a patient walks in.</h1>
+    <p class="lede">XeivoraMed gives clinics and labs a single, <b>verified patient record</b> — blood group, allergies, medications and recent labs — with the source shown on every value. Less time rebuilding history by hand. Fewer decisions made on guesswork.</p>
+    <svg class="pulse-line" viewBox="0 0 1016 54" preserveAspectRatio="none"><path d="M0 27 H300 L320 27 L335 10 L352 44 L366 27 L390 27 H560 L578 16 L592 38 L606 27 H760 L775 8 L790 46 L804 27 H1016"/></svg>
+    <div class="hero-meta">
+      <div class="m"><b>~14 min</b>saved per new-patient intake</div>
+      <div class="m"><b>6 fields</b>verified critical record</div>
+      <div class="m"><b>Sri Lanka</b>first pilot market</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEFINITION -->
+<section class="wrap">
+  <div class="define reveal">
+    <div class="dl">In one sentence</div>
+    <p>XeivoraMed is a trusted-data layer that links a patient's <span>government-verified identity</span> to verified records from certified labs and clinics — so the right information reaches the right provider, with consent, in seconds.</p>
+  </div>
+</section>
+
+<!-- 01 PROBLEM -->
+<section class="section" id="problem">
+  <div class="wrap sec-grid">
+    <div class="sec-num">01</div>
+    <div class="sec-main">
+      <h2 class="sec-title reveal">Fragmented records cost time and safety.</h2>
+      <p class="sec-intro reveal">Every new patient arrives with a history scattered across hospitals, labs and clinics that don't share data. Staff rebuild it by hand, every visit — and clinicians often act before it's complete.</p>
+      <div class="facts reveal">
+        <div class="fact"><div class="fn">14m</div><h4>Lost per intake</h4><p>Staff time collecting, re-keying and verifying history that already exists elsewhere.</p></div>
+        <div class="fact"><div class="fn">↑ risk</div><h4>Acting on guesswork</h4><p>Allergies missed, medications unknown, blood type unconfirmed.</p></div>
+        <div class="fact"><div class="fn">0</div><h4>Shared source of truth</h4><p>No common verified record moves between providers.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="wrap sec-grid">
+    <div class="sec-num">02</div>
+    <div class="sec-main">
+      <h2 class="sec-title reveal">A three-way handshake.</h2>
+      <p class="sec-intro reveal">Government confirms identity. Certified providers supply the data. The patient grants permission. XeivoraMed connects the three into one verified record.</p>
+      <div class="steps reveal">
+        <div class="step">
+          <div class="sc"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B3A8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/><circle cx="12" cy="11" r="2.5"/><path d="M8.5 17a3.5 3.5 0 0 1 7 0"/></svg></div>
+          <div><div class="st-tag">Identity</div><h4>Verified by government ID</h4><p>Identity is confirmed against the national NIC or passport registry — a trusted root no health app can self-report.</p></div>
+        </div>
+        <div class="step">
+          <div class="sc"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B3A8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a9 3 0 0 0 18 0M3 7a9 3 0 0 1 18 0v10a9 3 0 0 1-18 0z"/><path d="M3 12a9 3 0 0 0 18 0"/></svg></div>
+          <div><div class="st-tag">Data</div><h4>Supplied by certified providers</h4><p>Labs and clinics in the network contribute verified results directly, so every value carries a real, named source.</p></div>
+        </div>
+        <div class="step">
+          <div class="sc"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B3A8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+          <div><div class="st-tag">Permission</div><h4>Released by patient consent</h4><p>The patient grants access once. Every pull is logged, scoped and revocable — consent is the key to the whole record.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 VERIFIED DATA -->
+<section class="section" id="data">
+  <div class="wrap sec-grid">
+    <div class="sec-num">03</div>
+    <div class="sec-main">
+      <h2 class="sec-title reveal">Every value carries its source.</h2>
+      <p class="sec-intro reveal">Unverified data is a liability, not a help. XeivoraMed shows where each value came from and when — turning a vague profile into evidence a clinician can act on, and a clear record of what was relied upon.</p>
+      <div class="prov reveal">
+        <div class="prov-row"><div class="pic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1B3A8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 5.5 6 10a6 6 0 0 1-12 0c0-4.5 6-10 6-10z"/></svg></div><div class="pm"><div class="pk">Blood group</div><div class="pv">O Positive</div></div><span class="ptag v"><span class="d"></span>Verified · Nawaloka lab</span></div>
+        <div class="prov-row"><div class="pic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1B3A8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div><div class="pm"><div class="pk">Allergies</div><div class="pv">Penicillin</div></div><span class="ptag v"><span class="d"></span>Verified · Asiri discharge</span></div>
+        <div class="prov-row"><div class="pic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1B3A8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a2.8 2.8 0 0 0-4-4l-10 10a2.8 2.8 0 0 0 4 4z"/><path d="m8.5 8.5 4 4"/></svg></div><div class="pm"><div class="pk">Medications</div><div class="pv">Amlodipine 5mg</div></div><span class="ptag v"><span class="d"></span>Verified · prescription</span></div>
+        <div class="prov-row"><div class="pic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1B3A8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21.2l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></div><div class="pm"><div class="pk">Organ donor</div><div class="pv">Registered</div></div><span class="ptag s"><span class="d"></span>Self-reported</span></div>
+      </div>
+      <p class="prov-note reveal">Green marks a value confirmed from a named source. Amber marks anything the patient entered themselves — so a clinician always knows what to double-check.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 WHO IT'S FOR -->
+<section class="section">
+  <div class="wrap sec-grid">
+    <div class="sec-num">04</div>
+    <div class="sec-main">
+      <h2 class="sec-title reveal">Who it's for.</h2>
+      <p class="sec-intro reveal">Built for the people who treat patients — with the patient as the beneficiary, and in control.</p>
+      <div class="who-grid reveal">
+        <div class="who-card">
+          <div class="wi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B3A8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a9 3 0 0 0 18 0M3 7a9 3 0 0 1 18 0v10a9 3 0 0 1-18 0z"/></svg></div>
+          <h4>Clinics</h4>
+          <p>Pull a verified record at intake instead of rebuilding history by hand. Less paperwork, fewer blind spots.</p>
+        </div>
+        <div class="who-card">
+          <div class="wi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B3A8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v6l-5 9a2 2 0 0 0 1.8 3h12.4a2 2 0 0 0 1.8-3l-5-9V3M8 3h8"/></svg></div>
+          <h4>Labs</h4>
+          <p>Make results portable for patients and become a certified source of trusted data in the network.</p>
+        </div>
+        <div class="who-card">
+          <div class="wi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B3A8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3.5-6 7-6s7 2 7 6"/></svg></div>
+          <h4>Patients</h4>
+          <p>One verified health identity that travels with you, with consent and a full record of every access.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 ROLLOUT -->
+<section class="section" id="rollout">
+  <div class="wrap sec-grid">
+    <div class="sec-num">05</div>
+    <div class="sec-main">
+      <h2 class="sec-title reveal">How we're rolling out.</h2>
+      <p class="sec-intro reveal">Anchor with government. Execute with private clinics and labs. Scale to the whole system once the value is proven.</p>
+      <div class="timeline reveal">
+        <div class="tl"><div class="ph">Phase 1</div><h4>Identity anchor</h4><p>Integrate national NIC / passport verification and secure data-protection sign-off — government-verified trust without a government contract.</p><div class="when">Months 1–3</div></div>
+        <div class="tl"><div class="ph">Phase 2</div><h4>Private wedge</h4><p>Pilot verified onboarding with boutique clinics, issue the first physical cards, and prove time saved per patient.</p><div class="when">Months 3–6</div></div>
+        <div class="tl"><div class="ph">Phase 3</div><h4>Data liquidity</h4><p>Connect a major lab network and prove verified data moving cleanly from lab to record to treating doctor.</p><div class="when">Months 6–12</div></div>
+        <div class="tl"><div class="ph">Phase 4</div><h4>National scale</h4><p>Bring evidence of success to health systems and become the default trusted-data layer across the market.</p><div class="when">Year 2+</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="wrap sec-grid">
+    <div class="sec-num">06</div>
+    <div class="sec-main">
+      <h2 class="sec-title reveal">Questions, answered.</h2>
+      <div class="faq reveal" style="margin-top:18px">
+        <details class="qa"><summary>Is XeivoraMed live today?<span class="ico">+</span></summary><p>No — XeivoraMed is at pilot stage. The verification model and provider workflow are built and demonstrable; the data-source integrations are in development and are being piloted with partners. It is not yet for clinical use.</p></details>
+        <details class="qa"><summary>How is the data verified?<span class="ico">+</span></summary><p>Identity is verified against the national ID registry. Medical values are supplied by certified labs and clinics, and each value is tagged with its source and date. Anything a patient enters themselves is clearly marked as self-reported.</p></details>
+        <details class="qa"><summary>Who controls the patient's data?<span class="ico">+</span></summary><p>The patient. Access is granted by consent, scoped to a purpose, time-limited, and revocable. Every access is logged immutably, and the patient can see who opened their record, when, and why.</p></details>
+        <details class="qa"><summary>Does a clinic need to change its systems?<span class="ico">+</span></summary><p>The pilot works through a simple verified-intake step — no rip-and-replace of existing systems. Deeper integration into provider software is part of the later roadmap, not a requirement to start.</p></details>
+        <details class="qa"><summary>Why start in Sri Lanka?<span class="ico">+</span></summary><p>A mobile-first population, a clear data-protection framework under the PDPA 2022, and a fast-moving private healthcare sector make it a strong first market and a high-fidelity blueprint for other emerging markets.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="wrap">
+    <div class="closing-card reveal">
+      <h2>Stop rebuilding patient history.<br>Start pulling it.</h2>
+      <p>We're onboarding a small group of pilot clinics and labs in Sri Lanka. If verified intake would help your team, let's talk.</p>
+      <div class="row">
+        <a class="bn bn-coral" href="/clinic" target="_top">View the clinic demo</a>
+        <a class="bn bn-ghost" href="/passport" target="_top">For patients →</a>
+      </div>
+      <svg class="cpulse" viewBox="0 0 1016 60" preserveAspectRatio="none"><path d="M0 30 H380 L400 30 L415 12 L432 48 L446 30 L470 30 H700 L715 18 L730 42 L744 30 H1016"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="#"><span class="badge"><svg width="20" height="20" viewBox="0 0 40 40"><g transform="translate(20,20)"><path fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" d="M-11-11 L-4-3.5"/><path fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" d="M11-11 L4-3.5"/><path fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" d="M-11 11 L-4 3.5"/><path fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" d="M11 11 L4 3.5"/><path fill="none" stroke="#F2604E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" d="M-14 0 L-5 0 L-2.5-5.5 L2 5.5 L4.5 0 L14 0"/></g></svg></span><span class="wm">Xeivora<span>Med</span></span></a>
+        <p>Verified patient data, ready in your workflow.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col"><h5>Learn</h5><a href="#problem">The problem</a><a href="#how">How it works</a><a href="#data">Verified data</a><a href="#rollout">Rollout</a></div>
+        <div class="foot-col"><h5>For</h5><a href="#">Clinics</a><a href="#">Labs</a><a href="#">Patients</a></div>
+        <div class="foot-col"><h5>Trust</h5><a href="#">Privacy</a><a href="#">Security</a><a href="#">Data &amp; consent</a></div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 XeivoraMed. All rights reserved.</p>
+      <span class="pilot-note">Pilot stage — integrations in development, not yet for clinical use</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hdr=document.getElementById('hdr');
+  addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>10));
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

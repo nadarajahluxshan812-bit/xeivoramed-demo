@@ -1,0 +1,22 @@
+# dependencies
+node_modules
+
+# build output
+dist
+dist-ssr
+
+# env / secrets (never commit) — keep .env.example tracked
+.env
+.env.*
+!.env.example
+
+# local / editor / os
+*.local
+.DS_Store
+.vite
+*.log
+
+# TypeScript build artifacts
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
