@@ -57,14 +57,13 @@
   .hero-meta .m{font-size:14px;color:var(--slate)}
   .hero-meta .m b{display:block;font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--ink);letter-spacing:-0.5px;margin-bottom:1px}
 
-  /* live ECG monitor trace — a coral heartbeat tile that scrolls horizontally, forever.
-     The tile repeats across the full width and shifts by exactly one tile per loop, so the
-     waveform flows seamlessly with no flicker. Pure CSS, no JS. */
-  .pulse-line{width:100%;height:54px;margin:18px 0 0;
-    background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='240'%20height='54'%20viewBox='0%200%20240%2054'%3E%3Cpath%20d='M0%2027%20H86%20L96%2027%20L104%2010%20L114%2044%20L122%2027%20L138%2027%20L148%2022%20L160%2032%20L170%2027%20H240'%20fill='none'%20stroke='%23F2604E'%20stroke-width='2.2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-repeat:repeat-x;background-position:left center;background-size:240px 54px;
-    animation:ecgflow 5s linear infinite}
-  @keyframes ecgflow{from{background-position-x:0}to{background-position-x:-240px}}
+  /* live hospital ECG monitor — a coral heartbeat that flows steadily LEFT → RIGHT, forever.
+     A wide SVG holds one beat repeated 16×; we translateX by exactly one beat width (180px)
+     so the pattern lines up perfectly and the loop is seamless (no visible jump/reset).
+     Pure CSS GPU transform. Static under prefers-reduced-motion (global rule below). */
+  .ecg{width:100%;height:54px;margin:18px 0 0;overflow:hidden}
+  .ecg-trace{display:block;height:54px;fill:none;stroke:var(--coral);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 2px rgba(242,96,78,.4));will-change:transform;animation:ecgflow 3.5s linear infinite}
+  @keyframes ecgflow{from{transform:translateX(-180px)}to{transform:translateX(0)}}
 
   /* definition block */
   .define{background:var(--blue);color:#fff;border-radius:20px;padding:44px 48px;margin:8px 0 0}
@@ -208,7 +207,7 @@
     <div class="kicker">Verified patient-data infrastructure · Pilot stage</div>
     <h1>Verified patient data,<br><em>ready the moment</em> a patient walks in.</h1>
     <p class="lede">XeivoraMed gives clinics and labs a single, <b>verified patient record</b> — blood group, allergies, medications and recent labs — with the source shown on every value. Less time rebuilding history by hand. Fewer decisions made on guesswork.</p>
-    <div class="pulse-line" aria-hidden="true"></div>
+    <div class="ecg" aria-hidden="true"><svg class="ecg-trace" width="2880" height="54" viewBox="0 0 3200 60" preserveAspectRatio="xMidYMid meet"><defs><path id="beat" vector-effect="non-scaling-stroke" d="M0 30 H40 L48 25 L56 30 H74 L82 34 L90 8 L98 42 L104 30 H132 L142 23 L154 30 H200"/></defs><use href="#beat" x="0"/><use href="#beat" x="200"/><use href="#beat" x="400"/><use href="#beat" x="600"/><use href="#beat" x="800"/><use href="#beat" x="1000"/><use href="#beat" x="1200"/><use href="#beat" x="1400"/><use href="#beat" x="1600"/><use href="#beat" x="1800"/><use href="#beat" x="2000"/><use href="#beat" x="2200"/><use href="#beat" x="2400"/><use href="#beat" x="2600"/><use href="#beat" x="2800"/><use href="#beat" x="3000"/></svg></div>
     <div class="hero-meta">
       <div class="m"><b>~14 min</b>saved per new-patient intake</div>
       <div class="m"><b>6 fields</b>verified critical record</div>
