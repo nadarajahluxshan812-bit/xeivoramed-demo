@@ -3,7 +3,8 @@
 // public/home.html — rendered full-viewport here so it stays pixel-perfect and
 // its CSS never collides with the Tailwind phone-app screens.
 //
-// Its CTAs (target="_top") navigate into the phone demo at /clinic and /passport.
+// Its primary CTAs are handled inside public/home.html so the landing page can
+// keep its own behavior and smooth-scroll anchors without React interference.
 export function Home() {
   return (
     <iframe
