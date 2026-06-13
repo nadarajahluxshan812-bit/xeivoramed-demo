@@ -29,7 +29,7 @@
   body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.65;font-size:16px}
   a{text-decoration:none;color:inherit}
   .serif{font-family:'Fraunces',serif}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+  .wrap{max-width:1520px;margin:0 auto;padding:0 clamp(22px,4vw,48px)}
   .narrow{max-width:760px}
 
   /* header */
@@ -49,22 +49,22 @@
   /* hero — editorial */
   .hero{padding:34px 0 24px}
   .kicker{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--coral);margin-bottom:16px}
-  h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,4.4vw,54px);line-height:1.08;letter-spacing:-1.2px;max-width:880px;margin-bottom:20px}
+  h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,4.4vw,54px);line-height:1.08;letter-spacing:-1.2px;max-width:1040px;margin-bottom:20px}
   h1 em{font-style:italic;color:var(--blue)}
-  .lede{font-size:19px;color:var(--slate);max-width:660px;margin-bottom:20px}
+  .lede{font-size:19px;color:var(--slate);max-width:760px;margin-bottom:20px}
   .lede b{color:var(--ink);font-weight:600}
   .hero-meta{display:flex;gap:28px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
   .hero-meta .m{font-size:14px;color:var(--slate)}
   .hero-meta .m b{display:block;font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--ink);letter-spacing:-0.5px;margin-bottom:1px}
 
-  /* animated pulse signature line */
-  .pulse-line{width:100%;height:54px;margin:18px 0 0;display:block}
-  .pulse-line path{fill:none;stroke-linecap:round;stroke-linejoin:round}
-  /* full coral ECG line — always visible */
-  .pulse-line .pl-base{stroke:var(--coral);stroke-width:2.4}
-  /* a soft coral pulse that continuously runs left → right along the path */
-  .pulse-line .pl-trace{stroke:#FF9A8B;stroke-width:3.2;stroke-dasharray:9 100;stroke-dashoffset:109;filter:drop-shadow(0 0 3px rgba(242,96,78,.55));animation:ecgrun 2.8s linear infinite}
-  @keyframes ecgrun{from{stroke-dashoffset:109}to{stroke-dashoffset:0}}
+  /* live ECG monitor trace — a coral heartbeat tile that scrolls horizontally, forever.
+     The tile repeats across the full width and shifts by exactly one tile per loop, so the
+     waveform flows seamlessly with no flicker. Pure CSS, no JS. */
+  .pulse-line{width:100%;height:54px;margin:18px 0 0;
+    background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='240'%20height='54'%20viewBox='0%200%20240%2054'%3E%3Cpath%20d='M0%2027%20H86%20L96%2027%20L104%2010%20L114%2044%20L122%2027%20L138%2027%20L148%2022%20L160%2032%20L170%2027%20H240'%20fill='none'%20stroke='%23F2604E'%20stroke-width='2.2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:repeat-x;background-position:left center;background-size:240px 54px;
+    animation:ecgflow 5s linear infinite}
+  @keyframes ecgflow{from{background-position-x:0}to{background-position-x:-240px}}
 
   /* definition block */
   .define{background:var(--blue);color:#fff;border-radius:20px;padding:44px 48px;margin:8px 0 0}
@@ -181,7 +181,7 @@
     .closing-card{padding:40px 28px}
   }
   @media(max-width:520px){.wrap{padding:0 22px}h1{font-size:35px}}
-  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1!important;transform:none!important}.pulse-line .pl-trace{display:none!important}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1!important;transform:none!important}}
 </style>
 </head>
 <body>
@@ -208,7 +208,7 @@
     <div class="kicker">Verified patient-data infrastructure · Pilot stage</div>
     <h1>Verified patient data,<br><em>ready the moment</em> a patient walks in.</h1>
     <p class="lede">XeivoraMed gives clinics and labs a single, <b>verified patient record</b> — blood group, allergies, medications and recent labs — with the source shown on every value. Less time rebuilding history by hand. Fewer decisions made on guesswork.</p>
-    <svg class="pulse-line" viewBox="0 0 1016 54" preserveAspectRatio="none" aria-hidden="true"><path class="pl-base" pathLength="100" d="M0 27 H300 L320 27 L335 10 L352 44 L366 27 L390 27 H560 L578 16 L592 38 L606 27 H760 L775 8 L790 46 L804 27 H1016"/><path class="pl-trace" pathLength="100" d="M0 27 H300 L320 27 L335 10 L352 44 L366 27 L390 27 H560 L578 16 L592 38 L606 27 H760 L775 8 L790 46 L804 27 H1016"/></svg>
+    <div class="pulse-line" aria-hidden="true"></div>
     <div class="hero-meta">
       <div class="m"><b>~14 min</b>saved per new-patient intake</div>
       <div class="m"><b>6 fields</b>verified critical record</div>
