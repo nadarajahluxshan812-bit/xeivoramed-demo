@@ -57,13 +57,15 @@
   .hero-meta .m{font-size:14px;color:var(--slate)}
   .hero-meta .m b{display:block;font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--ink);letter-spacing:-0.5px;margin-bottom:1px}
 
-  /* live hospital ECG monitor — a coral heartbeat that flows steadily LEFT → RIGHT, forever.
-     A wide SVG holds one beat repeated 16×; we translateX by exactly one beat width (180px)
-     so the pattern lines up perfectly and the loop is seamless (no visible jump/reset).
-     Pure CSS GPU transform. Static under prefers-reduced-motion (global rule below). */
-  .ecg{width:100%;height:54px;margin:18px 0 0;overflow:hidden}
-  .ecg-trace{display:block;height:54px;fill:none;stroke:var(--coral);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 2px rgba(242,96,78,.4));will-change:transform;animation:ecgflow 3.5s linear infinite}
-  @keyframes ecgflow{from{transform:translateX(-180px)}to{transform:translateX(0)}}
+  /* live ECG patient monitor — a bright coral heartbeat on its own slim dark-navy strip.
+     One P-QRS-T beat is tiled 16× across a wide SVG; we translateX by exactly one beat
+     width (224px) to scroll RIGHT → LEFT on a seamless 1.8s linear loop (one repeat slides
+     out as an identical one slides in → no jump). A soft coral glow pulses with each beat.
+     Pure CSS GPU transform; static under prefers-reduced-motion (global rule below). */
+  .ecg-monitor{margin:20px 0 6px;background:#0B1A45;border-radius:14px;padding:13px 22px;overflow:hidden;box-shadow:0 10px 28px -18px rgba(11,26,69,.7)}
+  .ecg-trace{display:block;height:56px;fill:none;stroke:#FF6B5E;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 3px rgba(255,107,94,.55));will-change:transform;animation:ecgscroll 1.8s linear infinite,ecgglow 1.8s ease-in-out infinite}
+  @keyframes ecgscroll{from{transform:translateX(0)}to{transform:translateX(-224px)}}
+  @keyframes ecgglow{0%,100%{filter:drop-shadow(0 0 3px rgba(255,107,94,.5))}45%{filter:drop-shadow(0 0 7px rgba(255,107,94,.95))}}
 
   /* definition block */
   .define{background:var(--blue);color:#fff;border-radius:20px;padding:44px 48px;margin:8px 0 0}
@@ -207,7 +209,7 @@
     <div class="kicker">Verified patient-data infrastructure · Pilot stage</div>
     <h1>Verified patient data,<br><em>ready the moment</em> a patient walks in.</h1>
     <p class="lede">XeivoraMed gives clinics and labs a single, <b>verified patient record</b> — blood group, allergies, medications and recent labs — with the source shown on every value. Less time rebuilding history by hand. Fewer decisions made on guesswork.</p>
-    <div class="ecg" aria-hidden="true"><svg class="ecg-trace" width="2880" height="54" viewBox="0 0 3200 60" preserveAspectRatio="xMidYMid meet"><defs><path id="beat" vector-effect="non-scaling-stroke" d="M0 30 H40 L48 25 L56 30 H74 L82 34 L90 8 L98 42 L104 30 H132 L142 23 L154 30 H200"/></defs><use href="#beat" x="0"/><use href="#beat" x="200"/><use href="#beat" x="400"/><use href="#beat" x="600"/><use href="#beat" x="800"/><use href="#beat" x="1000"/><use href="#beat" x="1200"/><use href="#beat" x="1400"/><use href="#beat" x="1600"/><use href="#beat" x="1800"/><use href="#beat" x="2000"/><use href="#beat" x="2200"/><use href="#beat" x="2400"/><use href="#beat" x="2600"/><use href="#beat" x="2800"/><use href="#beat" x="3000"/></svg></div>
+    <div class="ecg-monitor" aria-hidden="true"><svg class="ecg-trace" width="3584" height="56" viewBox="0 0 3840 60" preserveAspectRatio="xMidYMid meet"><defs><path id="beat" vector-effect="non-scaling-stroke" d="M0 30 H54 L64 25 L74 30 H92 L100 33 L108 8 L116 50 L126 23 L138 30 H240"/></defs><use href="#beat" x="0"/><use href="#beat" x="240"/><use href="#beat" x="480"/><use href="#beat" x="720"/><use href="#beat" x="960"/><use href="#beat" x="1200"/><use href="#beat" x="1440"/><use href="#beat" x="1680"/><use href="#beat" x="1920"/><use href="#beat" x="2160"/><use href="#beat" x="2400"/><use href="#beat" x="2640"/><use href="#beat" x="2880"/><use href="#beat" x="3120"/><use href="#beat" x="3360"/><use href="#beat" x="3600"/></svg></div>
     <div class="hero-meta">
       <div class="m"><b>~14 min</b>saved per new-patient intake</div>
       <div class="m"><b>6 fields</b>verified critical record</div>
