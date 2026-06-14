@@ -57,15 +57,14 @@
   .hero-meta .m{font-size:14px;color:var(--slate)}
   .hero-meta .m b{display:block;font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--ink);letter-spacing:-0.5px;margin-bottom:1px}
 
-  /* live ECG patient monitor — a bright coral heartbeat on its own slim dark-navy strip.
+  /* live ECG heartbeat line — coral trace on the light page, flowing LEFT → RIGHT.
      One P-QRS-T beat is tiled 16× across a wide SVG; we translateX by exactly one beat
-     width (224px) to scroll LEFT → RIGHT on a seamless 1.8s linear loop (one repeat slides
-     out as an identical one slides in → no jump). A soft coral glow pulses with each beat.
-     Pure CSS GPU transform; static under prefers-reduced-motion (global rule below). */
-  .ecg-monitor{margin:20px 0 6px;background:#0B1A45;border-radius:14px;padding:13px 22px;overflow:hidden;box-shadow:0 10px 28px -18px rgba(11,26,69,.7)}
-  .ecg-trace{display:block;height:56px;fill:none;stroke:#FF6B5E;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 3px rgba(255,107,94,.55));will-change:transform;animation:ecgscroll 1.8s linear infinite,ecgglow 1.8s ease-in-out infinite}
+     width (224px) on a seamless linear loop (one repeat slides out as an identical one
+     slides in → no jump). Pure CSS GPU transform; static under prefers-reduced-motion. */
+  .ecg-monitor{margin:18px 0 2px;overflow:hidden}
+  .ecg-trace{display:block;height:56px;fill:none;stroke:#F2604E;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 2px rgba(242,96,78,.35));will-change:transform;animation:ecgscroll 2.8s linear infinite,ecgglow 2.8s ease-in-out infinite}
   @keyframes ecgscroll{from{transform:translateX(-224px)}to{transform:translateX(0)}}
-  @keyframes ecgglow{0%,100%{filter:drop-shadow(0 0 3px rgba(255,107,94,.5))}45%{filter:drop-shadow(0 0 7px rgba(255,107,94,.95))}}
+  @keyframes ecgglow{0%,100%{filter:drop-shadow(0 0 2px rgba(242,96,78,.3))}45%{filter:drop-shadow(0 0 4px rgba(242,96,78,.55))}}
 
   /* definition block */
   .define{background:var(--blue);color:#fff;border-radius:20px;padding:44px 48px;margin:8px 0 0}
