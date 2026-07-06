@@ -108,10 +108,10 @@
   .prov-row .pm{flex:1}
   .prov-row .pk{font-size:12px;color:var(--slate)}
   .prov-row .pv{font-size:15.5px;font-weight:600;letter-spacing:-0.2px}
-  .ptag{font-size:11px;font-weight:500;padding:5px 11px;border-radius:20px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
-  .ptag .d{width:5px;height:5px;border-radius:50%;background:currentColor}
-  .ptag.v{background:var(--green-soft);color:var(--green)}
-  .ptag.s{background:var(--amber-soft);color:var(--amber)}
+  .ptag{font-size:11px;font-weight:500;padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .ptag .d{width:6px;height:6px;border-radius:50%;background:currentColor}
+  .ptag.v{background:#E8F5EF;color:#0E7C5A}
+  .ptag.s{background:#FBF3E2;color:#9A6B00}
   .prov-note{font-size:13px;color:var(--faint);margin-top:14px}
 
   /* who it's for */
@@ -173,17 +173,58 @@
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
 
+  /* hero two-column + verified record card */
+  .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(30px,4.5vw,58px);align-items:center}
+  .hero-left{min-width:0}
+  .card-soft{box-shadow:0 1px 2px rgba(16,24,40,.05),0 22px 50px -20px rgba(27,58,143,.34)}
+  /* premium light-minimal verified record card */
+  .rec{background:#FFFFFF;border:1px solid #ECEEF3;border-radius:20px;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,.04),0 16px 40px -16px rgba(16,24,40,.12)}
+  .rec-hd{padding:24px 26px 20px;border-bottom:1px solid #ECEEF3}
+  .idbadge{display:inline-flex;align-items:center;gap:6px;background:#E8F5EF;color:#0E7C5A;padding:4px 10px;border-radius:999px;font-size:11.5px;font-weight:500;margin-bottom:14px}
+  .rec-hd .nm{font-family:'Fraunces',serif;font-size:23px;font-weight:500;color:#171E33;letter-spacing:-0.3px;line-height:1.1}
+  .rec-hd .sub{font-size:13px;color:#6B7280;margin-top:4px}
+  .rec-hd .idn{font-size:12px;letter-spacing:1.3px;color:#9AA1B2;margin-top:10px;font-weight:500}
+  .rrow{display:flex;align-items:center;gap:14px;padding:16px 26px}
+  .rrow + .rrow{border-top:1px solid #F2F3F6}
+  .rrow .ri{width:34px;height:34px;border-radius:9px;background:#F4F6FA;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .rrow .rc{flex:1;min-width:0}
+  .rrow .rk{font-size:13px;color:#6B7280}
+  .rrow .rv{font-size:15px;font-weight:500;color:#171E33;letter-spacing:-0.1px;margin-top:1px}
+  .rec-ft{border-top:1px solid #ECEEF3;padding:14px 26px;font-size:12px;color:#0E7C5A;font-weight:500;display:flex;align-items:center;gap:7px}
+
+  /* honest stats band */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .stat{background:var(--paper-2);padding:28px 26px}
+  .stat b{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:var(--blue);letter-spacing:-0.6px;line-height:1;margin-bottom:10px}
+  .stat b .tt{font-family:'Inter',sans-serif;font-size:10px;font-weight:600;color:var(--amber);background:var(--amber-soft);padding:2px 8px;border-radius:10px;letter-spacing:.3px}
+  .stat .sl{font-size:13.5px;color:var(--slate)}
+
+  /* product preview — full provider record */
+  .pv2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .pv-card{border:1px solid #ECEEF3;border-radius:16px;background:#FFFFFF;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,.03),0 12px 30px -16px rgba(16,24,40,.10)}
+  .pv-card .ph2{display:flex;align-items:center;gap:9px;padding:15px 20px;border-bottom:1px solid #ECEEF3;font-size:11.5px;font-weight:500;letter-spacing:.8px;text-transform:uppercase;color:#6B7280}
+  .pv-card .ph2 .dot{width:7px;height:7px;border-radius:50%;background:var(--blue)}
+  .pv-li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 20px;font-size:14px}
+  .pv-li + .pv-li{border-top:1px solid #F2F3F6}
+  .pv-li .lk{color:#6B7280;font-size:13px}
+  .pv-rt{display:flex;align-items:center;gap:9px;flex-shrink:0}
+  .pv-rt .lv{font-weight:500;color:#171E33;letter-spacing:-0.1px}
+
   @media(max-width:860px){
     h1{font-size:42px}
     .sec-grid{grid-template-columns:1fr;gap:0}
     .sec-num{padding-top:0;margin-bottom:8px}
     .facts,.who-grid{grid-template-columns:1fr}
     .nav .links{display:none}
+    .nav-extra{display:none}
     .define{padding:32px}
     .define p{font-size:22px}
     .closing-card{padding:40px 28px}
+    .hero-grid{grid-template-columns:1fr;gap:32px}
+    .stats{grid-template-columns:1fr 1fr}
+    .pv2{grid-template-columns:1fr}
   }
-  @media(max-width:520px){.wrap{padding:0 22px}h1{font-size:35px}}
+  @media(max-width:520px){.wrap{padding:0 22px}h1{font-size:35px}.stats{grid-template-columns:1fr}.stat{padding:22px 24px}.stat b{font-size:26px}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1!important;transform:none!important}}
 </style>
 </head>
@@ -200,23 +241,67 @@
       <a href="#rollout">Rollout</a>
       <a href="#faq">FAQ</a>
     </div>
-    <a href="/clinic" target="_top" style="font-size:13.5px;font-weight:500;color:var(--slate);white-space:nowrap">View demo</a>
-    <a href="https://xeivoramed-portal.vercel.app/portal/login" target="_top" style="font-size:13.5px;font-weight:600;color:#1B3A8F;white-space:nowrap;padding:7px 14px;border:1px solid #E1E4EF;border-radius:10px;text-decoration:none">Log in</a>
-    <a class="cta" href="mailto:luxshan@xeivora.com?subject=Pilot%20enquiry%20%E2%80%94%20XeivoraMed&amp;body=Hi%20Luxshan%2C%0A%0AI%27m%20interested%20in%20a%20XeivoraMed%20pilot%20for%20our%20clinic%2Flab.%20I%27d%20like%20to%20learn%20more.%0A%0AName%3A%0AOrganisation%3A%0ARole%3A%0AUse%20case%3A%0A%0AThanks%2C" style="display:inline-flex;align-items:center">Book a pilot call</a>
+    <a class="nav-extra" href="/clinic" target="_top" style="font-size:13.5px;font-weight:500;color:var(--slate);white-space:nowrap">View demo</a>
+    <a class="nav-extra" href="https://xeivoramed-portal.vercel.app/portal/login" target="_top" style="font-size:13.5px;font-weight:600;color:#1B3A8F;white-space:nowrap;padding:7px 14px;border:1px solid #E1E4EF;border-radius:10px;text-decoration:none">Log in</a>
+    <a class="cta" href="mailto:luxshan@xeivora.com?subject=XeivoraMed%20—%20Pilot%20call%20request&amp;body=Hi%2C%20I'd%20like%20to%20book%20a%20pilot%20call%20to%20learn%20more%20about%20XeivoraMed." style="display:inline-flex;align-items:center">Book a pilot call</a>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <div class="kicker">Verified patient-data infrastructure · Pilot stage</div>
-    <h1>Verified patient data,<br><em>ready the moment</em> a patient walks in.</h1>
-    <p class="lede">XeivoraMed gives clinics and labs a single, <b>verified patient record</b> — blood group, allergies, medications and recent labs — with the source shown on every value. Less time rebuilding history by hand. Fewer decisions made on guesswork.</p>
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="kicker">Verified patient-data infrastructure · Pilot stage</div>
+        <h1>Verified patient data,<br><em>ready the moment</em> a patient walks in.</h1>
+        <p class="lede">XeivoraMed gives clinics and labs a single, <b>verified patient record</b> — blood group, allergies, medications and recent labs — with the source shown on every value. Less time rebuilding history by hand. Fewer decisions made on guesswork.</p>
+      </div>
+      <div class="reveal">
+        <div class="rec card-soft" role="img" aria-label="Example verified patient record card">
+          <div class="rec-hd">
+            <span class="idbadge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0E7C5A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5.5v6c0 4.6 3.2 7.7 8 9.5 4.8-1.8 8-4.9 8-9.5v-6z"/><path d="m9 12 2 2 4-4"/></svg>ID verified</span>
+            <div class="nm">Nimal Perera</div>
+            <div class="sub">58 · Colombo · O positive</div>
+            <div class="idn">XEV · LK · 7F3A · 9KQ2</div>
+          </div>
+          <div class="rec-rows">
+            <div class="rrow">
+              <div class="ri"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1B3A8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 5.5 6 10a6 6 0 0 1-12 0c0-4.5 6-10 6-10z"/></svg></div>
+              <div class="rc"><div class="rk">Blood group</div><div class="rv">O Positive</div></div>
+              <span class="ptag v"><span class="d"></span>Verified</span>
+            </div>
+            <div class="rrow">
+              <div class="ri"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1B3A8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div>
+              <div class="rc"><div class="rk">Allergy</div><div class="rv">Penicillin</div></div>
+              <span class="ptag v"><span class="d"></span>Verified · lab</span>
+            </div>
+            <div class="rrow">
+              <div class="ri"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1B3A8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a2.8 2.8 0 0 0-4-4l-10 10a2.8 2.8 0 0 0 4 4z"/><path d="m8.5 8.5 4 4"/></svg></div>
+              <div class="rc"><div class="rk">Medication</div><div class="rv">Amlodipine 5mg</div></div>
+              <span class="ptag v"><span class="d"></span>Verified · Rx</span>
+            </div>
+            <div class="rrow">
+              <div class="ri"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1B3A8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.6 1.5a11 11 0 0 0 5 5L18 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 5 6a2 2 0 0 1 0-2z"/></svg></div>
+              <div class="rc"><div class="rk">Emergency contact</div><div class="rv">K. Perera · wife</div></div>
+              <span class="ptag s"><span class="d"></span>Self-reported</span>
+            </div>
+          </div>
+          <div class="rec-ft"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0E7C5A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Consent-based access · every view audited</div>
+        </div>
+      </div>
+    </div>
     <div class="ecg-monitor" aria-hidden="true"><svg class="ecg-trace" width="3584" height="56" viewBox="0 0 3840 60" preserveAspectRatio="xMidYMid meet"><defs><path id="beat" vector-effect="non-scaling-stroke" d="M0 30 H54 L64 25 L74 30 H92 L100 33 L108 8 L116 50 L126 23 L138 30 H240"/></defs><use href="#beat" x="0"/><use href="#beat" x="240"/><use href="#beat" x="480"/><use href="#beat" x="720"/><use href="#beat" x="960"/><use href="#beat" x="1200"/><use href="#beat" x="1440"/><use href="#beat" x="1680"/><use href="#beat" x="1920"/><use href="#beat" x="2160"/><use href="#beat" x="2400"/><use href="#beat" x="2640"/><use href="#beat" x="2880"/><use href="#beat" x="3120"/><use href="#beat" x="3360"/><use href="#beat" x="3600"/></svg></div>
-    <div class="hero-meta">
-      <div class="m"><b>~14 min</b>saved per new-patient intake</div>
-      <div class="m"><b>6 fields</b>verified critical record</div>
-      <div class="m"><b>Sri Lanka</b>first pilot market</div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<section style="padding:10px 0 4px">
+  <div class="wrap">
+    <div class="stats reveal">
+      <div class="stat"><b>~14 min<span class="tt">target</span></b><span class="sl">saved per patient intake</span></div>
+      <div class="stat"><b>Every value</b><span class="sl">shows its source and date</span></div>
+      <div class="stat"><b>Every access</b><span class="sl">consent-based and audited</span></div>
+      <div class="stat"><b>Pilot stage</b><span class="sl">Sri Lanka — first market</span></div>
     </div>
   </div>
 </section>
@@ -285,6 +370,41 @@
       </div>
       <p class="prov-note reveal">Green marks a value confirmed from a named source. Amber marks anything the patient entered themselves — so a clinician always knows what to double-check.</p>
     </div>
+  </div>
+</section>
+
+<!-- PRODUCT PREVIEW -->
+<section class="section">
+  <div class="wrap">
+    <h2 class="sec-title reveal" style="max-width:640px">The record a provider actually sees.</h2>
+    <p class="sec-intro reveal" style="max-width:640px">One screen at intake — identity confirmed, critical facts first, then conditions, medications and immunisations, each carrying its own source.</p>
+    <div class="pv2 reveal">
+      <div class="pv-card">
+        <div class="ph2"><span class="dot" style="background:var(--coral)"></span>Critical</div>
+        <div class="pv-li"><span class="lk">Blood group</span><span class="pv-rt"><span class="lv">O Positive</span><span class="ptag v"><span class="d"></span>Verified</span></span></div>
+        <div class="pv-li"><span class="lk">Allergies</span><span class="pv-rt"><span class="lv">Penicillin</span><span class="ptag v"><span class="d"></span>Verified · lab</span></span></div>
+        <div class="pv-li"><span class="lk">Organ donor</span><span class="pv-rt"><span class="lv">Registered</span><span class="ptag s"><span class="d"></span>Self-reported</span></span></div>
+      </div>
+      <div class="pv-card">
+        <div class="ph2"><span class="dot"></span>Conditions</div>
+        <div class="pv-li"><span class="lk">Hypertension</span><span class="pv-rt"><span class="lv">Since 2019</span><span class="ptag v"><span class="d"></span>Verified · clinic</span></span></div>
+        <div class="pv-li"><span class="lk">Chronic kidney disease</span><span class="pv-rt"><span class="lv">Stage 3</span><span class="ptag v"><span class="d"></span>Verified · nephrology</span></span></div>
+        <div class="pv-li"><span class="lk">Type 2 diabetes</span><span class="pv-rt"><span class="lv">Managed</span><span class="ptag s"><span class="d"></span>Self-reported</span></span></div>
+      </div>
+      <div class="pv-card">
+        <div class="ph2"><span class="dot"></span>Medications</div>
+        <div class="pv-li"><span class="lk">Amlodipine</span><span class="pv-rt"><span class="lv">5 mg · daily</span><span class="ptag v"><span class="d"></span>Verified · Rx</span></span></div>
+        <div class="pv-li"><span class="lk">Metformin</span><span class="pv-rt"><span class="lv">500 mg · 2×</span><span class="ptag v"><span class="d"></span>Verified · Rx</span></span></div>
+        <div class="pv-li"><span class="lk">Atorvastatin</span><span class="pv-rt"><span class="lv">10 mg · daily</span><span class="ptag v"><span class="d"></span>Verified · Rx</span></span></div>
+      </div>
+      <div class="pv-card">
+        <div class="ph2"><span class="dot"></span>Immunisations</div>
+        <div class="pv-li"><span class="lk">COVID-19</span><span class="pv-rt"><span class="lv">3 doses</span><span class="ptag v"><span class="d"></span>Verified · registry</span></span></div>
+        <div class="pv-li"><span class="lk">Tetanus</span><span class="pv-rt"><span class="lv">2021</span><span class="ptag v"><span class="d"></span>Verified · clinic</span></span></div>
+        <div class="pv-li"><span class="lk">Influenza</span><span class="pv-rt"><span class="lv">2024</span><span class="ptag s"><span class="d"></span>Self-reported</span></span></div>
+      </div>
+    </div>
+    <p class="prov-note reveal" style="margin-top:16px">Illustrative record — sample data. Green = confirmed from a named source; amber = entered by the patient.</p>
   </div>
 </section>
 
@@ -357,7 +477,7 @@
       <h2>Stop rebuilding patient history.<br>Start pulling it.</h2>
       <p>We're onboarding a small group of pilot clinics and labs in Sri Lanka. If verified intake would help your team, let's talk.</p>
       <div class="row">
-        <a class="bn bn-coral" href="mailto:luxshan@xeivora.com?subject=Pilot%20enquiry%20%E2%80%94%20XeivoraMed&amp;body=Hi%20Luxshan%2C%0A%0AI%27m%20interested%20in%20a%20XeivoraMed%20pilot%20for%20our%20clinic%2Flab.%20I%27d%20like%20to%20learn%20more.%0A%0AName%3A%0AOrganisation%3A%0ARole%3A%0AUse%20case%3A%0A%0AThanks%2C">Book a pilot call</a>
+        <a class="bn bn-coral" href="mailto:luxshan@xeivora.com?subject=XeivoraMed%20—%20Pilot%20call%20request&amp;body=Hi%2C%20I'd%20like%20to%20book%20a%20pilot%20call%20to%20learn%20more%20about%20XeivoraMed.">Book a pilot call</a>
         <a class="bn bn-ghost" href="#patients">For patients →</a>
       </div>
       <svg class="cpulse" viewBox="0 0 1016 60" preserveAspectRatio="none"><path d="M0 30 H380 L400 30 L415 12 L432 48 L446 30 L470 30 H700 L715 18 L730 42 L744 30 H1016"/></svg>
