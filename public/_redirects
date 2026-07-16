@@ -1,4 +1,5 @@
-# Cloudflare Pages SPA fallback: serve index.html for client-side routes.
-# Real static files (/home.html, /assets/*) are served directly and take
-# precedence over this rule.
-/*    /index.html   200
+# Cloudflare Pages rules for the static marketing homepage and the demo SPA.
+# Real static files such as /robots.txt, /sitemap.xml, /og-image.png and
+# /favicon.svg are served directly before this fallback is applied.
+/home.html    /    301
+/*            /app.html   200

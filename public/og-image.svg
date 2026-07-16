@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="90" y1="60" x2="1110" y2="570" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFD"/>
+      <stop offset="1" stop-color="#EDF2FD"/>
+    </linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B3A8F"/>
+      <stop offset="1" stop-color="#142C6E"/>
+    </linearGradient>
+    <filter id="panel-shadow" x="36" y="36" width="1128" height="558" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#14306C" flood-opacity="0.12"/>
+    </filter>
+    <filter id="card-shadow" x="724" y="116" width="340" height="380" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#0F172A" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="#F3F6FC"/>
+  <circle cx="1040" cy="96" r="182" fill="#E9EFFC"/>
+  <circle cx="112" cy="556" r="152" fill="#EEF3FE"/>
+  <g filter="url(#panel-shadow)">
+    <rect x="60" y="60" width="1080" height="510" rx="34" fill="url(#bg)"/>
+  </g>
+
+  <rect x="120" y="120" width="128" height="128" rx="32" fill="url(#badge)"/>
+  <g transform="translate(184 184)">
+    <path d="M-41 -41 L-15 -15" stroke="#FFFFFF" stroke-width="8.5" stroke-linecap="round"/>
+    <path d="M41 -41 L15 -15" stroke="#FFFFFF" stroke-width="8.5" stroke-linecap="round"/>
+    <path d="M-41 41 L-15 15" stroke="#FFFFFF" stroke-width="8.5" stroke-linecap="round"/>
+    <path d="M41 41 L15 15" stroke="#FFFFFF" stroke-width="8.5" stroke-linecap="round"/>
+    <path d="M-51 0 L-21 0 L-11 -19 L4 19 L13 0 L51 0" stroke="#F2604E" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <text x="120" y="322" fill="#171E33" font-family="Helvetica" font-size="68" font-weight="650" letter-spacing="-1.3">
+    Xeivora<tspan fill="#F2604E">Med</tspan>
+  </text>
+  <text x="120" y="374" fill="#1B3A8F" font-family="Helvetica" font-size="34" font-weight="600" letter-spacing="-0.5">
+    Verified Digital Health Identity
+  </text>
+  <text x="120" y="434" fill="#2E3A59" font-family="Helvetica" font-size="28" font-weight="550" letter-spacing="-0.3">
+    One patient. One trusted health identity.
+  </text>
+  <text x="120" y="484" fill="#566178" font-family="Helvetica" font-size="22" font-weight="500">
+    <tspan x="120" dy="0">Securely organise and share verified medical records,</tspan>
+    <tspan x="120" dy="32">emergency information and trusted health data.</tspan>
+  </text>
+
+  <rect x="120" y="522" width="174" height="36" rx="18" fill="#ECF2FD"/>
+  <rect x="306" y="522" width="218" height="36" rx="18" fill="#FFF1EE"/>
+  <rect x="536" y="522" width="176" height="36" rx="18" fill="#EAF6F1"/>
+  <text x="153" y="545" fill="#1B3A8F" font-family="Helvetica" font-size="15" font-weight="600">Medical records</text>
+  <text x="338" y="545" fill="#D85A4B" font-family="Helvetica" font-size="15" font-weight="600">Emergency information</text>
+  <text x="566" y="545" fill="#0E7C5A" font-family="Helvetica" font-size="15" font-weight="600">Trusted health data</text>
+
+  <g filter="url(#card-shadow)">
+    <rect x="744" y="136" width="300" height="340" rx="24" fill="#FFFFFF"/>
+  </g>
+  <rect x="774" y="166" width="104" height="28" rx="14" fill="#E8F5EF"/>
+  <text x="807" y="185" fill="#0E7C5A" font-family="Helvetica" font-size="13" font-weight="600">ID verified</text>
+  <text x="774" y="232" fill="#171E33" font-family="Times New Roman" font-size="28" font-weight="700">Nimal Perera</text>
+  <text x="774" y="259" fill="#6B7280" font-family="Helvetica" font-size="14" font-weight="500">58 · Colombo · O positive</text>
+  <text x="774" y="286" fill="#9AA1B2" font-family="Helvetica" font-size="12" font-weight="600" letter-spacing="2">XEV · LK · 7F3A · 9KQ2</text>
+  <line x1="774" y1="314" x2="1014" y2="314" stroke="#ECEEF3"/>
+
+  <rect x="774" y="336" width="240" height="56" rx="14" fill="#F8FAFD"/>
+  <text x="794" y="357" fill="#6B7280" font-family="Helvetica" font-size="12" font-weight="600">Blood group</text>
+  <text x="794" y="379" fill="#171E33" font-family="Helvetica" font-size="17" font-weight="650">O Positive</text>
+  <rect x="935" y="351" width="65" height="20" rx="10" fill="#E8F5EF"/>
+  <text x="952" y="365" fill="#0E7C5A" font-family="Helvetica" font-size="11" font-weight="700">Verified</text>
+
+  <rect x="774" y="404" width="240" height="56" rx="14" fill="#F8FAFD"/>
+  <text x="794" y="425" fill="#6B7280" font-family="Helvetica" font-size="12" font-weight="600">Allergy</text>
+  <text x="794" y="447" fill="#171E33" font-family="Helvetica" font-size="17" font-weight="650">Penicillin</text>
+  <rect x="901" y="419" width="99" height="20" rx="10" fill="#E8F5EF"/>
+  <text x="918" y="433" fill="#0E7C5A" font-family="Helvetica" font-size="11" font-weight="700">Verified · lab</text>
+
+  <path d="M774 108 L835 108 L846 100 L857 116 L869 92 L882 132 L895 108 L962 108" stroke="#F2604E" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
