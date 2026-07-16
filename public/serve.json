@@ -1,5 +1,4 @@
 {
   "cleanUrls": false,
-  "redirects": [{ "source": "/home.html", "destination": "/" }],
-  "rewrites": [{ "source": "**", "destination": "/app.html" }]
+  "rewrites": [{ "source": "**", "destination": "/index.html" }]
 }
